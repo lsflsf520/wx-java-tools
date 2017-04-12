@@ -13,7 +13,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * <pre>
@@ -238,7 +240,7 @@ public class WxMpXmlMessage implements Serializable {
    */
   @XStreamAlias("msg")
   private String msg;
-
+  
   ///////////////////////////////////////
   // 微信认证事件推送
   ///////////////////////////////////////
@@ -302,6 +304,20 @@ public class WxMpXmlMessage implements Serializable {
    */
   @XStreamAlias("DeviceStatus")
   private Integer deviceStatus;
+  
+  /**
+   * 该字段用于存储一些非微信端推送的用户自定义数据，便于在消息对应的handler中区分
+   */
+  private Map<String, Object> otherParams = new HashMap<>();
+  
+  public void addOther(String key, Object value){
+	  this.otherParams.put(key, value);
+  }
+  
+  @SuppressWarnings("unchecked")
+  public <T> T getOther(String key){
+	  return (T)this.otherParams.get(key);
+  }
 
   public static WxMpXmlMessage fromXml(String xml) {
     return XStreamTransformer.fromXml(WxMpXmlMessage.class, xml);
