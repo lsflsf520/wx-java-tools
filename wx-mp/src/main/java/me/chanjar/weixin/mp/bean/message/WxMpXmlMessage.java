@@ -308,9 +308,12 @@ public class WxMpXmlMessage implements Serializable {
   /**
    * 该字段用于存储一些非微信端推送的用户自定义数据，便于在消息对应的handler中区分
    */
-  private Map<String, Object> otherParams = new HashMap<>();
+  private Map<String, Object> otherParams;
   
   public void addOther(String key, Object value){
+	  if(this.otherParams == null){
+		  this.otherParams  = new HashMap<>();
+	  }
 	  this.otherParams.put(key, value);
   }
   
