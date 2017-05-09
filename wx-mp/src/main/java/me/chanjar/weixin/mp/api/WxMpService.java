@@ -70,6 +70,15 @@ public interface WxMpService {
    * </pre>
    */
   WxJsapiSignature createJsapiSignature(String url) throws WxErrorException;
+  
+  /**
+   * 使用 https://api.weixin.qq.com/cgi-bin/user/info?access_token=ACCESS_TOKEN&openid=OPENID&lang=zh_CN 接口获取用户信息
+   * @param openId 用户的openId
+   * @param lang 语言
+   * @return
+   * @throws WxErrorException
+   */
+  WxMpUser oauth2getUserInfo(String openId, String lang) throws WxErrorException;
 
   /**
    * <pre>
