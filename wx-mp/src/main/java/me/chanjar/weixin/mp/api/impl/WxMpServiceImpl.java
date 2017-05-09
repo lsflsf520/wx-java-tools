@@ -280,7 +280,7 @@ public class WxMpServiceImpl implements WxMpService {
   @Override
   public WxMpUser oauth2getUserInfo(WxMpOAuth2AccessToken oAuth2AccessToken, String lang) throws WxErrorException {
     StringBuilder url = new StringBuilder();
-    url.append("https://api.weixin.qq.com/sns/userinfo?");
+    url.append("https://api.weixin.qq.com/cgi-bin/user/info?");
     url.append("access_token=").append(oAuth2AccessToken.getAccessToken());
     url.append("&openid=").append(oAuth2AccessToken.getOpenId());
     if (lang == null) {
